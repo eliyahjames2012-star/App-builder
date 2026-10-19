@@ -15,11 +15,19 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Build APK with Buildozer
-        uses: kivy/buildozer-action@v1
-        with:
-          command: buildozer -v android debug
-          repository_root: .
+      - name: Install System Dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev build-essential
+
+      - name: Install Buildozer
+        run: |
+          pip install --upgrade pip
+          pip install buildozer cython
+
+      - name: Run Buildozer Compiler
+        run: |
+          buildozer -v android debug
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
