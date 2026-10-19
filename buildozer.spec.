@@ -1,0 +1,5 @@
+[app]
+title = My Aegis App
+package.name = aegisapp
+package.domain = org.test
+source.include_exts = py,png,jpg,kv,atlas
