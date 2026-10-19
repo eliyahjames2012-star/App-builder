@@ -27,11 +27,10 @@ jobs:
 
       - name: Run Buildozer Compiler
         run: |
-          buildozer -v android debug
+          yes | buildozer -v android debug
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: package
           path: bin/*.apk
-          
